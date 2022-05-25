@@ -31,55 +31,31 @@ function letterGrade(grade) {
     if (grade === 0) return 'U GET 0 HEHEHEHEHE';
     return 'The techer gave u negative score. Get Nubed'
 }
-var above100 = `
-green
-`,
-a = `
-#69b34c
-`,
-b = `
-#acb334
-`,
-c = `
-#fab733
-`,
-d = `
-#ff8e15
-`,
-f = `
-#ff4e11
-`,
-u = `
-red
-`,
-t = `
-brown
-`;
 function getGradeColor(letterGrade) {
     switch (letterGrade.charAt(0)) {
         case 'H':
-            return above100;
+            return green;
             break;
         case 'A':
-            return a;
+            return '#69b34c'; // Original: #69b34c
             break;
         case 'B':
-            return b;
+            return '#acb334'; // Original: #acb334
             break;
         case 'C':
-            return c;
+            return '#fab733'; // Original: #fab733 #fab733 #fab733
             break;
         case 'D':
-            return d;
+            return '#ff8e15'; // Original: #ff8e15
             break;
         case 'F':
-            return f;
+            return '#ff4e11'; // Original: #ff4e11
             break;
         case 'U':
-            return u;
+            return 'red'; // Original: red
             break;
         case 'T':
-            return t;
+            return 'brown'; // Original: brown
             break;
     }
 }
