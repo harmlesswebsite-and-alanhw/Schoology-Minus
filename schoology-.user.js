@@ -8,7 +8,7 @@
 // @grant        none
 // ==/UserScript==
 function save_settings(img, resources, grades, homehref, courses, groups) {
-    localStorage.setItem('img_url', img);
+    localStorage.setItem('img_url', img); 
     localStorage.setItem('resources', resources);
     localStorage.setItem('grades', grades);
     localStorage.setItem('homehref', homehref);
@@ -113,7 +113,7 @@ window.save_settings = save_settings;
     <br />
     <h3>Advanced configuration</h3>
     <p>You probably don't want to go here.</p>
-    <input type="button" value="RESET ALL SETTINGS" style="background-color: black; color: white;" onclick="if (confirm('Resetting settings - are you sure!?')) { var ids = ['img_url', 'resources', 'grades', 'homehref', 'boringclasses', 'pooptalks']; for (var i = 0; i < ids.length; i++) localStorage.removeItem(ids[i]); location.reload(); }" />
+    <input type="button" value="RESET ALL SETTINGS" style="background-color: black; color: white;" onclick="if (confirm('WAT!? RESETTING SETTINGS TO BASIC SCHOOLOGY? U R BoRiNg')) { var ids = ['img_url', 'resources', 'grades', 'homehref', 'boringclasses', 'pooptalks']; for (var i = 0; i < ids.length; i++) localStorage.removeItem(ids[i]); location.reload(); }" />
     <p>Schoology Minus, version 8.8.8.5. Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL 3.0 (or at your option any later version)</a>. Copyright &copy; 2022 weeklyd3.</p>
     </form>
     </div>`;
