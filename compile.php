@@ -18,17 +18,37 @@ function striposAll($haystack, $needle) {
     return $positions;
 }
 ?>
+Step 0
+Wait, there was a step 0? 
+=========================
+To continue compilation, press ENTER now. To hear some boring stuff, type anything other than ENTER.
+<?php 
+if (readline('')) {
+    echo "OK then, here's the README you asked to see:\n";
+    exit(file_get_contents('README.compiler.md'));
+}
+?>
+
+Step 1
+Input file
+==========
+
 Using file <?php 
 $file = readline('[template.js] (hint: Leave this blank!): ');
-if (!$file) $file = 'template.js';
+if (!$file) { echo 'template.js'; $file = 'template.js'; }
+if (!file_exists($file)) {
+    exit("\nFile does not exist. Get nubed.\n");
+}
 ?>
+
+Step 2
 i18n and l10n
-=============
+=========================
 Available languages here:
 <?php 
 foreach (scandir('files/') as $lang) {
     if ($lang === '.' || $lang === '..') continue;
-    echo $lang . "\n";
+    echo " - " . $lang . "\n";
 }
 ?>
 Language [en]: <?php $lang = readline('');
