@@ -18,55 +18,31 @@ function letterGrade(grade) {
     if (grade === 0) return 'U GET 0 HEHEHEHEHE';
     return 'The techer gave u negative score. Get Nubed'
 }
-var above100 = `
-$ABOVE100.TXT
-`,
-a = `
-$A.TXT
-`,
-b = `
-$B.TXT
-`,
-c = `
-$C.TXT
-`,
-d = `
-$D.TXT
-`,
-f = `
-$F.TXT
-`,
-u = `
-$U.TXT
-`,
-t = `
-$T.TXT
-`;
 function getGradeColor(letterGrade) {
     switch (letterGrade.charAt(0)) {
         case 'H':
-            return above100;
+            return $ABOVE100.TXT;
             break;
         case 'A':
-            return a;
+            return '$A.TXT'; // Original: $A.TXT
             break;
         case 'B':
-            return b;
+            return '$B.TXT'; // Original: $B.TXT
             break;
         case 'C':
-            return c;
+            return '$C.TXT'; // Original: $C.TXT
             break;
         case 'D':
-            return d;
+            return '$D.TXT'; // Original: $D.TXT
             break;
         case 'F':
-            return f;
+            return '$F.TXT'; // Original: $F.TXT
             break;
         case 'U':
-            return u;
+            return '$U.TXT'; // Original: $U.TXT
             break;
         case 'T':
-            return t;
+            return '$T.TXT'; // Original: $T.TXT
             break;
     }
 }

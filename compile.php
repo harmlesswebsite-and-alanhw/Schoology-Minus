@@ -5,29 +5,79 @@ function starts( $haystack, $needle ) {
     $length = strlen( $needle );
     return substr( $haystack, 0, $length ) === $needle;
 }
+function striposAll($haystack, $needle) {
+    $haystack = strtoupper($haystack);
+    $needle   = strtoupper($needle);
+    $lastPos = 0;
+    $positions = array();
+
+    while (($lastPos = strpos($haystack, $needle, $lastPos))!== false) {
+        $positions[] = $lastPos;
+        $lastPos = $lastPos + strlen($needle);
+    }
+    return $positions;
+}
 ?>
 Using file: template.js
+Normalizing line breaks to Unix (\n)...
 <?php 
 $template = explode("\n", file_get_contents('template.js'));
-foreach ($template as &$line) {
+foreach ($template as $num => &$line) {
+    echo "Process line $num\n";
     $line = trim($line, "\r");
 }
-foreach ($template as $number => &$line) {
-    ?>Read line <?php echo $number; 
+$file = implode("\n", $template);
+?>Normalizing complete
+Replacing variables...
+Discovering variables...
+<?php
+$variables = array_diff(scandir('files/'), array('.', '..'));
+echo count($variables);
+echo ' variables found.';
+echo "\n";
+$width = 20;
+?>Replacing variables...
+[<?php echo str_repeat(" ", $width); ?>] 0/<?php echo count($variables); ?> (0%)
+Replacements started
+<?php
+$num = 0;
+foreach ($variables as $variable) {
+    $num++;
+    echo '[';
+    echo str_repeat("=", round($num / count($variables) * 20));
+    echo str_repeat(" ", 20 - round($num / count($variables) * 20));
+    echo "] ";
+    echo $num;
+    echo '/' . count($variables) . ' (';
+    echo 100 * round($num / count($variables), 2);
+    echo "%)\n";
+    echo "Looking for \$$variable\n";
+    $var = "$" . $variable;
+    echo substr_count(strtoupper($file), strtoupper($var));
+    echo " match";
+    echo substr_count(strtoupper($file), strtoupper($var)) - 1 ? "es" : "";
     echo "\n";
-    if (starts($line, '$')) {
-        ?>Special variable detected: <?php echo strtolower(substr($line, 1));  
-        if (file_exists("files/" . strtolower(substr($line, 1)))) {
-            echo "\nFile found! Including...";
-            $line = file_get_contents("files/" . strtolower(substr($line, 1)));
-        } else {
-            echo "\nTemplate not found. Make sure it is in the files/ directory and its filename is all lowercase.";
-            $line = "/* COMPILE WARNING: File not found: " . "files/" . strtolower(substr($line, 1)) . " */";
+    $t = explode("\n", $file);
+    $replaceme = preg_quote($var, '/');
+    foreach ($t as $lineNumber => &$line) {
+        if (stripos($line, $var) !== false) {
+            echo "On line $lineNumber:\n  ";
+            echo $line;
+            echo "\n  ";
+            $offsets = striposAll($line, $var);
+            $offset = $offsets[0];
+            foreach ($offsets as $index => $number) {
+                echo str_repeat(" ", $offset);
+                echo "^";
+                if (isset($offsets[$index + 1])) $offset = $offsets[$index + 1] - $number - 1;
+            }
+            echo "\n";
+            $line = preg_replace("/" . $replaceme . "/i", file_get_contents("files/$variable"), $line);
         }
-        echo "\n";
     }
+    $file = implode("\n", $t);
 }
-fwrite(fopen('schoology-.user.js', 'w+'), implode("\n", $template));
+fwrite(fopen('schoology-.user.js', 'w+'), $file);
 ?>
 
 Complete!
