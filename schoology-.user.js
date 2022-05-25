@@ -124,7 +124,7 @@ window.save_settings = save_settings;
     document.getElementById('img').value = img;
     document.getElementById('peeview').src = img;
     document.getElementById('resources').value = localStorage.getItem('resources') ?? 'ЯЕЕЅОЦЯСЕЅ';
-    document.getElementById('grades').value = localStorage.getItem('grades') ?? 'FALIURE GRADES';
+    // The FALIURE GRADES line caused some problems on small screens. Moving to bottom.
     document.getElementById('boringclasses').value = localStorage.getItem('boringclasses') ?? 'BORING CLASSES';
     document.getElementById('pooptalks').value = localStorage.getItem('pooptalks') ?? 'POOP TALKS';
     document.getElementById('homehref').value = localStorage.getItem('homehref') ?? 'https://alanhw.weeklyd3.repl.co/schoology.html';
@@ -144,4 +144,6 @@ window.save_settings = save_settings;
     document.querySelector('[href="/grades/grades"]').textContent = localStorage.getItem('grades') ?? 'FALIURE GRADES';
     document.querySelector('nav ul li:nth-child(2) div button span').textContent = localStorage.getItem('boringclasses') ?? 'BORING CLASSES';
     document.querySelector('nav ul li:nth-child(3) div button span').textContent = localStorage.getItem('pooptalks') ?? 'POOP TALKS';
+        document.getElementById('grades').value = localStorage.getItem('grades') ?? 'FALIURE GRADES';
+
 })();
