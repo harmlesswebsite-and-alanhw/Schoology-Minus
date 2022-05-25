@@ -18,10 +18,26 @@ function striposAll($haystack, $needle) {
     return $positions;
 }
 ?>
-Using file: template.js
+Using file <?php 
+$file = readline('[template.js] (hint: Leave this blank!): ');
+if (!$file) $file = 'template.js';
+?>
+i18n and l10n
+=============
+Available languages here:
+<?php 
+foreach (scandir('files/') as $lang) {
+    if ($lang === '.' || $lang === '..') continue;
+    echo $lang . "\n";
+}
+?>
+Language [en]: <?php $lang = readline('');
+if (!$lang) $lang = 'en';
+if (!is_dir("files/$lang")) exit('Invalid language. Get nubed.' . "\n");
+?>
 Normalizing line breaks to Unix (\n)...
 <?php 
-$template = explode("\n", file_get_contents('template.js'));
+$template = explode("\n", file_get_contents($file));
 foreach ($template as $num => &$line) {
     echo "Process line $num\n";
     $line = trim($line, "\r");
@@ -31,7 +47,7 @@ $file = implode("\n", $template);
 Replacing variables...
 Discovering variables...
 <?php
-$variables = array_diff(scandir('files/'), array('.', '..'));
+$variables = array_diff(scandir('files/' . $lang), array('.', '..'));
 echo count($variables);
 echo ' variables found.';
 echo "\n";
@@ -72,7 +88,7 @@ foreach ($variables as $variable) {
                 if (isset($offsets[$index + 1])) $offset = $offsets[$index + 1] - $number - 1;
             }
             echo "\n";
-            $line = preg_replace("/" . $replaceme . "/i", file_get_contents("files/$variable"), $line);
+            $line = preg_replace("/" . $replaceme . "/i", file_get_contents("files/$lang/$variable"), $line);
         }
     }
     $file = implode("\n", $t);
