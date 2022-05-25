@@ -127,7 +127,7 @@ window.save_settings = save_settings;
     // The FALIURE GRADES line caused some problems on small screens. Moving to bottom.
     document.getElementById('boringclasses').value = localStorage.getItem('boringclasses') ?? 'BORING CLASSES';
     document.getElementById('pooptalks').value = localStorage.getItem('pooptalks') ?? 'POOP TALKS';
-    document.getElementById('homehref').value = localStorage.getItem('homehref') ?? '/homef';
+    document.getElementById('homehref').value = localStorage.getItem('homehref') ?? '/home';
     var poologyMinusButton = document.createElement('button');
     poologyMinusButton.addEventListener('click', function() { document.getElementById('poologysettings').style.display = 'block'; });
     poologyMinusButton.textContent = 'SCHOOLOGY MINUS SETTINGS';
