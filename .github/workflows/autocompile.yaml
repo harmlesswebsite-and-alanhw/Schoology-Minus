@@ -1,7 +1,0 @@
-jobs:
-  name-of-job:
-    runs-on: bash
-    steps:
-      - name: Compile script
-        run: |
-          php compile.php
