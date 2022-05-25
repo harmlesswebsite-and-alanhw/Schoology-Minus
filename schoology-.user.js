@@ -23,7 +23,7 @@ function letterGrade(grade) {
     if (60 <= grade && grade < 70) return 'D - U SUK';
     if (0 < grade && grade < 60) return 'F - YOU ARE A FALIURE';
     if (grade === 0) return 'U GET 0 HEHEHEHEHE';
-    return 'The techer gave u negative score. BWAHAHAHAHAHAHA'
+    return 'The techer gave u negative score. Get Nubed'
 }
 function getGradeColor(letterGrade) {
     switch (letterGrade.charAt(0)) {
@@ -127,7 +127,7 @@ window.save_settings = save_settings;
     // The FALIURE GRADES line caused some problems on small screens. Moving to bottom.
     document.getElementById('boringclasses').value = localStorage.getItem('boringclasses') ?? 'BORING CLASSES';
     document.getElementById('pooptalks').value = localStorage.getItem('pooptalks') ?? 'POOP TALKS';
-    document.getElementById('homehref').value = localStorage.getItem('homehref') ?? 'https://alanhw.weeklyd3.repl.co/schoology.html';
+    document.getElementById('homehref').value = localStorage.getItem('homehref') ?? '/homef';
     var poologyMinusButton = document.createElement('button');
     poologyMinusButton.addEventListener('click', function() { document.getElementById('poologysettings').style.display = 'block'; });
     poologyMinusButton.textContent = 'SCHOOLOGY MINUS SETTINGS';
@@ -138,7 +138,7 @@ window.save_settings = save_settings;
       document.querySelector('a[href="/home"]').addEventListener('click', function(ev) {
         ev.stopImmediatePropagation();
         ev.preventDefault();
-        location.href = localStorage.getItem('homehref') ?? 'https://alanhw.weeklyd3.repl.co/schoology.html';
+        location.href = localStorage.getItem('homehref') ?? '/home';
     });
     document.querySelector('a[href="/home"]').setAttribute('href', localStorage.getItem('homehref') ?? 'https://alanhw.weeklyd3.repl.co/schoology.html');
     document.querySelector('[href="/grades/grades"]').textContent = localStorage.getItem('grades') ?? 'FALIURE GRADES';
