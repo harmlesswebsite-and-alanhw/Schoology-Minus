@@ -43,7 +43,7 @@ function getGradeColor(letterGrade) {
             return '#acb334'; // Original: #acb334
             break;
         case 'C':
-            return '#fab733'; // Original: #fab733 #fab733 #fab733
+            return '#fab733'; // Original: #fab733
             break;
         case 'D':
             return '#ff8e15'; // Original: #ff8e15
