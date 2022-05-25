@@ -1,0 +1,26 @@
+<div style="color: black; padding: 7px; position: fixed; top: 50%; left: 50%; overflow: scroll; width: 75%; height: 75%; transform: translate(-50%, -50%); background-color: white;"><h2>Schoology Minus Settings</h2>
+<p>You can modify the interface here.</p>
+    <div style="float: right;">
+    Preview of image:<br />
+    <img id="peeview" src="data:image/png;base64," alt="Preview" style="max-width: 50%; display: block;" onerror="document.getElementById('error').style.display = 'block'; document.getElementById('load').style.display = 'none';" onload="document.getElementById('load').style.display = 'none';" />
+    <div id="load" style="display: none;">Loading...</div>
+    <div id="error" style="display: none;">An error occurred while loading the image.</div>
+    </div>
+    <form onsubmit="save_settings(document.getElementById('img').value, document.getElementById('resources').value, document.getElementById('grades').value, document.getElementById('homehref').value, document.getElementById('boringclasses').value, document.getElementById('pooptalks').value)">
+    <table>
+    <tr><td><label for="img">Logo image:</label></td> <td><input id="img" oninput="document.getElementById('load').style.display = 'block'; document.getElementById('error').style.display = 'none'; document.getElementById('peeview').src = this.value;" /></td></tr>
+    <tr><td><label for="boringclasses">Text of Courses:</label></td><td><input id="boringclasses" /></td></tr>
+    <tr><td><label for="pooptalks">Text of Groups: </label></td><td><input id="pooptalks" /></td></tr>
+    <tr><td><label for="resources">Text of Resources:</label></td><td><input id="resources" /></td></tr>
+    <tr><td><label for="grades">Text of 'Grades' link:</label></td> <td><input id="grades" /></td></tr>
+    <tr><td><label for="homehref">Where should the logo link to?</label></td> <td><input id="homehref" /></td></tr>
+    </table>
+    <input type="button" value="CANCEL" style="background-color: black; color: white;" onclick="if (confirm('Are you sure you want to exist? WHOOPS I meant exit')) document.getElementById('poologysettings').style.display = 'none';" />
+    <input type="submit" value="SAVE" style="font-weight: 700; background-color: black; color: white;" onclick="document.getElementById('poologysettings').style.display = 'none'; location.reload();" />
+    <br />
+    <h3>Advanced configuration</h3>
+    <p>You probably don't want to go here.</p>
+    <input type="button" value="RESET ALL SETTINGS" style="background-color: black; color: white;" onclick="if (confirm('WAT!? RESETTING SETTINGS TO BASIC SCHOOLOGY? U R BoRiNg')) { var ids = ['img_url', 'resources', 'grades', 'homehref', 'boringclasses', 'pooptalks']; for (var i = 0; i < ids.length; i++) localStorage.removeItem(ids[i]); location.reload(); }" />
+    <p>Schoology Minus, version 8.8.8.5. Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL 3.0 (or at your option any later version)</a>. Copyright &copy; 2022 weeklyd3.</p>
+    </form>
+    </div>
