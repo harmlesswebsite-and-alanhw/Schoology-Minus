@@ -20,28 +20,28 @@ function letterGrade(grade) {
 }
 function getGradeColor(letterGrade) {
     switch (letterGrade.charAt(0)) {
-        case 'H':
+        case '$ABOVE100.MSG'.charAt(0):
             return $ABOVE100.TXT;
             break;
-        case 'A':
+        case '$A.MSG'.charAt(0):
             return '$A.TXT'; // Original: $A.TXT
             break;
-        case 'B':
+        case '$B.MSG'.charAt(0):
             return '$B.TXT'; // Original: $B.TXT
             break;
-        case 'C':
+        case '$C.MSG'.charAt(0):
             return '$C.TXT'; // Original: $C.TXT
             break;
-        case 'D':
+        case '$D.MSG'.charAt(0):
             return '$D.TXT'; // Original: $D.TXT
             break;
-        case 'F':
+        case '$F.MSG'.charAt(0):
             return '$F.TXT'; // Original: $F.TXT
             break;
-        case 'U':
+        case '$0.MSG'.charAt(0):
             return '$U.TXT'; // Original: $U.TXT
             break;
-        case 'T':
+        case '$NEG.MSG'.charAt(0):
             return '$T.TXT'; // Original: $T.TXT
             break;
     }
