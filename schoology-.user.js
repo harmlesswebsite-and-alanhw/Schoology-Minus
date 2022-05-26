@@ -33,28 +33,28 @@ function letterGrade(grade) {
 }
 function getGradeColor(letterGrade) {
     switch (letterGrade.charAt(0)) {
-        case 'H':
+        case 'HEY! U Cheated!'.charAt(0):
             return green;
             break;
-        case 'A':
+        case 'A - AVERAGE and AWFUL!'.charAt(0):
             return '#69b34c'; // Original: #69b34c
             break;
-        case 'B':
+        case 'B - U GET B? STOOBID'.charAt(0):
             return '#acb334'; // Original: #acb334
             break;
-        case 'C':
+        case 'C - REDO IT'.charAt(0):
             return '#fab733'; // Original: #fab733
             break;
-        case 'D':
+        case 'D - U SUK'.charAt(0):
             return '#ff8e15'; // Original: #ff8e15
             break;
-        case 'F':
+        case 'F - YOU ARE A FALIURE'.charAt(0):
             return '#ff4e11'; // Original: #ff4e11
             break;
-        case 'U':
+        case 'U GET 0 HEHEHEHEHE'.charAt(0):
             return 'red'; // Original: red
             break;
-        case 'T':
+        case 'The techer gave u negative score. Get Nubed'.charAt(0):
             return 'brown'; // Original: brown
             break;
     }
@@ -125,7 +125,6 @@ if (window.location.href.includes('grades')) {
     </form>
     </div>
 `;
-
 
     var img_url = "https://alanhw.weeklyd3.repl.co/morebsiv.png";
     var img = localStorage.getItem('img_url') ?? img_url;
