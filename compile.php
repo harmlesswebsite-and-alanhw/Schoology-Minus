@@ -113,7 +113,9 @@ foreach ($variables as $variable) {
     }
     $file = implode("\n", $t);
 }
-fwrite(fopen('schoology-.user.js', 'w+'), $file);
+$outputFilename = 'schoology-.user.js';
+if ($lang !== "en") $outputFilename = 'schoology-.' . $lang . '.user.js';
+fwrite(fopen($outputFilename, 'w+'), $file);
 ?>
 
 Complete!
