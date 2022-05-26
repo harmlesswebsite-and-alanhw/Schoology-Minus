@@ -8,11 +8,12 @@ var img_url = "https://alanhw.weeklyd3.repl.co/morebsiv.png";
     // The FALIURE GRADES line caused some problems on small screens. Moving to bottom.
     document.getElementById('boringclasses').value = localStorage.getItem('boringclasses') ?? 'BORING CLASSES';
     document.getElementById('pooptalks').value = localStorage.getItem('pooptalks') ?? 'POOP TALKS';
-    document.getElementById('homehref').value = localStorage.getItem('homehref') ?? '/home';
+    document.getElementById('homehref').value = localStorage.getItem('homehref') ?? '/home'; */
     var poologyMinusButton = document.createElement('button');
     poologyMinusButton.addEventListener('click', function() { document.getElementById('poologysettings').style.display = 'block'; });
     poologyMinusButton.textContent = 'SCHOOLOGY MINUS SETTINGS';
     document.body.appendChild(poologyMinusButton);
+/*
 
     document.querySelector('a[href="/home"]').style.backgroundImage = `url(${img})`;
     document.querySelector('[href="/resources"]').textContent = localStorage.getItem('resources') ?? 'ЯЕЕЅОЦЯСЕЅ';
