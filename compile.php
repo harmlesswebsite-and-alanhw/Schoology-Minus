@@ -108,7 +108,7 @@ foreach ($variables as $variable) {
                 if (isset($offsets[$index + 1])) $offset = $offsets[$index + 1] - $number - 1;
             }
             echo "\n";
-            $line = preg_replace("/" . $replaceme . "/i", file_get_contents("files/$lang/$variable"), $line);
+            $line = preg_replace("/" . $replaceme . "/i", trim(file_get_contents("files/$lang/$variable"), "\n"), $line);
         }
     }
     $file = implode("\n", $t);
