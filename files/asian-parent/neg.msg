@@ -1,1 +1,0 @@
-The techer gave u negative score. Get Nubed
