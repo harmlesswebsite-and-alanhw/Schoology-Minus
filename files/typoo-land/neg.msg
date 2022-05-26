@@ -1,0 +1,1 @@
+The techer gave u neagtive scor. Get Nubem mirablemed
