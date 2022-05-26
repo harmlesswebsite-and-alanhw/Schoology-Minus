@@ -34,7 +34,7 @@ function letterGrade(grade) {
 function getGradeColor(letterGrade) {
     switch (letterGrade.charAt(0)) {
         case 'YOU CHEATED. IMMA REPORT YOU TO THE DEAN'.charAt(0):
-            return 'green';
+            return 'green'; 
             break;
         case 'Y U ONLY GET A? Y U NO GET MORE THAN 100?'.charAt(0):
             return '#69b34c';
