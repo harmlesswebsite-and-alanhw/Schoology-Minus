@@ -34,28 +34,28 @@ function letterGrade(grade) {
 function getGradeColor(letterGrade) {
     switch (letterGrade.charAt(0)) {
         case 'HEY! U Cheated!'.charAt(0):
-            return green;
+            return 'green';
             break;
         case 'A - AVERAGE and AWFUL!'.charAt(0):
-            return '#69b34c'; // Original: #69b34c
+            return '#69b34c';
             break;
         case 'B - U GET B? STOOBID'.charAt(0):
-            return '#acb334'; // Original: #acb334
+            return '#acb334'; 
             break;
         case 'C - REDO IT'.charAt(0):
-            return '#fab733'; // Original: #fab733
+            return '#acb334';
             break;
         case 'D - U SUK'.charAt(0):
-            return '#ff8e15'; // Original: #ff8e15
+            return '#ff8e15'; 
             break;
         case 'F - YOU ARE A FALIURE'.charAt(0):
-            return '#ff4e11'; // Original: #ff4e11
+            return '#ff4e11';
             break;
         case 'U GET 0 HEHEHEHEHE'.charAt(0):
-            return 'red'; // Original: red
+            return 'red';
             break;
         case 'The techer gave u negative score. Get Nubed'.charAt(0):
-            return 'brown'; // Original: brown
+            return 'brown';
             break;
     }
 }
@@ -67,91 +67,92 @@ window.save_settings = save_settings;
         // Probably an iframe.
         return;
     }
-if (window.location.href.includes('grades')) {
-    // Probably a grades page
-    if (document.querySelector('[class="gradebook-course-title"]')) {
-         var grades = document.querySelectorAll('[class="grade-column"]');
-        for (var j = 0; j < grades.length; j++) {
-            var gradeTd = grades[j];
-            if (!gradeTd.children[0].children[0]) continue;
-            if (!gradeTd.children[0].children[1]) continue;
-            console.log(gradeTd);
-            var received = parseFloat(gradeTd.children[0].children[0].textContent);
-            var total = parseFloat(gradeTd.children[0].children[1].textContent.slice(2));
-            if (received !== received) {
-                // Sounds Cra-Z. That must be NaN.
-                continue;
+    if (window.location.href.includes('grades')) {
+        // Probably a grades page
+        if (document.querySelector('[class="gradebook-course-title"]')) {
+             var grades = document.querySelectorAll('[class="grade-column"]');
+            for (var j = 0; j < grades.length; j++) {
+                var gradeTd = grades[j];
+                if (!gradeTd.children[0].children[0]) continue;
+                if (!gradeTd.children[0].children[1]) continue;
+                console.log(gradeTd);
+                var received = parseFloat(gradeTd.children[0].children[0].textContent);
+                var total = parseFloat(gradeTd.children[0].children[1].textContent.slice(2));
+                if (received !== received) {
+                    // Sounds Cra-Z. That must be NaN.
+                    continue;
+                }
+                gradeTd.children[0].children[2].style.margin = '3px';
+                if (!total) {
+                    gradeTd.children[0].children[2].textContent = '(0 TOTAL POINTS YA BIG NUB)';
+                    continue;
+                }
+                var letter = letterGrade(100 * received / total);
+                gradeTd.children[0].children[2].style.color = getGradeColor(letter);
+                gradeTd.children[0].children[0].style.color = getGradeColor(letter);
+                gradeTd.children[0].children[2].textContent = " (" + (100 * received / total) + "%) (" + letter + ")";
             }
-            gradeTd.children[0].children[2].style.margin = '3px';
-            if (!total) {
-                gradeTd.children[0].children[2].textContent = '(ZERO TOTAL POINTS YA BIG NUB)';
-                continue;
-            }
-            var letter = letterGrade(100 * received / total);
-            gradeTd.children[0].children[2].style.color = getGradeColor(letter);
-            gradeTd.children[0].children[0].style.color = getGradeColor(letter);
-            gradeTd.children[0].children[2].textContent = " (" + (100 * received / total) + "%) (" + letter + ")";
         }
     }
-}
     var actualSettings = document.createElement('div');
     actualSettings.setAttribute('id', 'poologysettings');
     actualSettings.setAttribute('style', 'z-index: 33283328; display: none;position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);');
     actualSettings.innerHTML = `
-<div style="color: black; padding: 7px; position: fixed; top: 50%; left: 50%; overflow: scroll; width: 75%; height: 75%; transform: translate(-50%, -50%); background-color: white;"><h2>Schoology Minus Settings</h2>
-<p>You can modify the interface here.</p>
-    <div style="float: right;">
-    Preview of image:<br />
-    <img id="peeview" src="data:image/png;base64," alt="Preview" style="max-width: 50%; display: block;" onerror="document.getElementById('error').style.display = 'block'; document.getElementById('load').style.display = 'none';" onload="document.getElementById('load').style.display = 'none';" />
-    <div id="load" style="display: none;">Loading...</div>
-    <div id="error" style="display: none;">An error occurred while loading the image.</div>
-    </div>
-    <form onsubmit="save_settings(document.getElementById('img').value, document.getElementById('resources').value, document.getElementById('grades').value, document.getElementById('homehref').value, document.getElementById('boringclasses').value, document.getElementById('pooptalks').value)">
-    <table>
-    <tr><td><label for="img">Logo image:</label></td> <td><input id="img" oninput="document.getElementById('load').style.display = 'block'; document.getElementById('error').style.display = 'none'; document.getElementById('peeview').src = this.value;" /></td></tr>
-    <tr><td><label for="boringclasses">Text of Courses:</label></td><td><input id="boringclasses" /></td></tr>
-    <tr><td><label for="pooptalks">Text of Groups: </label></td><td><input id="pooptalks" /></td></tr>
-    <tr><td><label for="resources">Text of Resources:</label></td><td><input id="resources" /></td></tr>
-    <tr><td><label for="grades">Text of 'Grades' link:</label></td> <td><input id="grades" /></td></tr>
-    <tr><td><label for="homehref">Where should the logo link to?</label></td> <td><input id="homehref" /></td></tr>
-    </table>
-    <input type="button" value="CANCEL" style="background-color: black; color: white;" onclick="if (confirm('Are you sure you want to exist? WHOOPS I meant exit')) document.getElementById('poologysettings').style.display = 'none';" />
-    <input type="submit" value="SAVE" style="font-weight: 700; background-color: black; color: white;" onclick="document.getElementById('poologysettings').style.display = 'none'; location.reload();" />
-    <br />
-    <h3>Advanced configuration</h3>
-    <p>You probably don't want to go here.</p>
-    <input type="button" value="RESET ALL SETTINGS" style="background-color: black; color: white;" onclick="if (confirm('WAT!? RESETTING SETTINGS TO BASIC SCHOOLOGY? U R BoRiNg')) { var ids = ['img_url', 'resources', 'grades', 'homehref', 'boringclasses', 'pooptalks']; for (var i = 0; i < ids.length; i++) localStorage.removeItem(ids[i]); location.reload(); }" />
-    <p>Schoology Minus, version 8.8.8.5. Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL 3.0 (or at your option any later version)</a>. Copyright &copy; 2022 weeklyd3.</p>
-    </form>
-    </div>
+    <div style="color: black; padding: 7px; position: fixed; top: 50%; left: 50%; overflow: scroll; width: 75%; height: 75%; transform: translate(-50%, -50%); background-color: white;"><h2>Schoology Minus Settings</h2>
+    <p>You can modify the interface here.</p>
+        <div style="float: right;">
+        Preview of image:<br />
+        <img id="peeview" src="data:image/png;base64," alt="Preview" style="max-width: 50%; display: block;" onerror="document.getElementById('error').style.display = 'block'; document.getElementById('load').style.display = 'none';" onload="document.getElementById('load').style.display = 'none';" />
+        <div id="load" style="display: none;">Loading...</div>
+        <div id="error" style="display: none;">An error occurred while loading the image.</div>
+        </div>
+        <form onsubmit="save_settings(document.getElementById('img').value, document.getElementById('resources').value, document.getElementById('grades').value, document.getElementById('homehref').value, document.getElementById('boringclasses').value, document.getElementById('pooptalks').value)">
+        <table>
+        <tr><td><label for="img">Logo image:</label></td> <td><input id="img" oninput="document.getElementById('load').style.display = 'block'; document.getElementById('error').style.display = 'none'; document.getElementById('peeview').src = this.value;" /></td></tr>
+        <tr><td><label for="boringclasses">Text of Courses: </label></td><td><input id="boringclasses" /></td></tr>
+        <tr><td><label for="pooptalks">Text of Groups: </label></td><td><input id="pooptalks" /></td></tr>
+        <tr><td><label for="resources">Text of Resources: </label></td><td><input id="resources" /></td></tr>
+        <tr><td><label for="grades">Text of 'Grades' link: </label></td> <td><input id="grades" /></td></tr>
+        <tr><td><label for="homehref">Where should the logo link to? </label></td> <td><input id="homehref" /></td></tr>
+        </table>
+        <input type="button" value="Cancel" style="background-color: black; color: white;" onclick="if (confirm('Are you sure you want to exist? WHOOPS I meant exit')) document.getElementById('poologysettings').style.display = 'none';" />
+        <input type="submit" value="Save" style="font-weight: 700; background-color: black; color: white;" onclick="document.getElementById('poologysettings').style.display = 'none'; location.reload();" />
+        <br />
+        <h3>Advanced settings</h3>
+        <p>You probably don't want to go here.</p>
+        <input type="button" value="RESET ALL SETTINGS" style="background-color: black; color: white;" onclick="if (confirm('Are you sure you want to reset settings? AWW BOORING')) { var ids = ['img_url', 'resources', 'grades', 'homehref', 'boringclasses', 'pooptalks']; for (var i = 0; i < ids.length; i++) localStorage.removeItem(ids[i]); location.reload(); }" />
+        <p>Schoology Minus, version 8.8.8.5. Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL 3.0 (or at your option any later version)</a>. Copyright &copy; 2022 weeklyd3.</p>
+        </form>
+        </div>
 `;
 
-    var img_url = "https://alanhw.weeklyd3.repl.co/morebsiv.png";
-    var img = localStorage.getItem('img_url') ?? img_url;
-    document.body.appendChild(actualSettings);
-    document.getElementById('img').value = img;
-    document.getElementById('peeview').src = img;
-    document.getElementById('resources').value = localStorage.getItem('resources') ?? 'ЯЕЕЅОЦЯСЕЅ';
-    // The FALIURE GRADES line caused some problems on small screens. Moving to bottom.
-    document.getElementById('boringclasses').value = localStorage.getItem('boringclasses') ?? 'BORING CLASSES';
-    document.getElementById('pooptalks').value = localStorage.getItem('pooptalks') ?? 'POOP TALKS';
-    document.getElementById('homehref').value = localStorage.getItem('homehref') ?? '/home';
-    var poologyMinusButton = document.createElement('button');
-    poologyMinusButton.addEventListener('click', function() { document.getElementById('poologysettings').style.display = 'block'; });
-    poologyMinusButton.textContent = 'SCHOOLOGY MINUS SETTINGS';
-    document.body.appendChild(poologyMinusButton);
 
-    document.querySelector('a[href="/home"]').style.backgroundImage = `url(${img})`;
-    document.querySelector('[href="/resources"]').textContent = localStorage.getItem('resources') ?? 'ЯЕЕЅОЦЯСЕЅ';
-      document.querySelector('a[href="/home"]').addEventListener('click', function(ev) {
-        ev.stopImmediatePropagation();
-        ev.preventDefault();
-        location.href = localStorage.getItem('homehref') ?? '/home';
-    });
-    document.querySelector('a[href="/home"]').setAttribute('href', localStorage.getItem('homehref') ?? 'https://alanhw.weeklyd3.repl.co/schoology.html');
-    document.querySelector('[href="/grades/grades"]').textContent = localStorage.getItem('grades') ?? 'FALIURE GRADES';
-    document.querySelector('nav ul li:nth-child(2) div button span').textContent = localStorage.getItem('boringclasses') ?? 'BORING CLASSES';
-    document.querySelector('nav ul li:nth-child(3) div button span').textContent = localStorage.getItem('pooptalks') ?? 'POOP TALKS';
-        document.getElementById('grades').value = localStorage.getItem('grades') ?? 'FALIURE GRADES';
+var img_url = "https://alanhw.weeklyd3.repl.co/morebsiv.png";
+var img = localStorage.getItem('img_url') ?? img_url;
+document.body.appendChild(actualSettings);
+document.getElementById('img').value = img;
+document.getElementById('peeview').src = img;
+document.getElementById('resources').value = localStorage.getItem('resources') ?? 'ЯЕЕЅОЦЯСЕЅ';
+// The FALIURE GRADES line caused some problems on small screens. Moving to bottom.
+document.getElementById('boringclasses').value = localStorage.getItem('boringclasses') ?? 'BORING CLASSES';
+document.getElementById('pooptalks').value = localStorage.getItem('pooptalks') ?? 'POOP TALKS';
+document.getElementById('homehref').value = localStorage.getItem('homehref') ?? '/home';
+var poologyMinusButton = document.createElement('button');
+poologyMinusButton.addEventListener('click', function() { document.getElementById('poologysettings').style.display = 'block'; });
+poologyMinusButton.textContent = 'SCHOOLOGY MINUS SETTINS';
+document.body.appendChild(poologyMinusButton);
+
+document.querySelector('a[href="/home"]').style.backgroundImage = `url(${img})`;
+document.querySelector('[href="/resources"]').textContent = localStorage.getItem('resources') ?? 'ЯЕЕЅОЦЯСЕЅ';
+  document.querySelector('a[href="/home"]').addEventListener('click', function(ev) {
+    ev.stopImmediatePropagation();
+    ev.preventDefault();
+    location.href = localStorage.getItem('homehref') ?? '/home';
+});
+document.querySelector('a[href="/home"]').setAttribute('href', localStorage.getItem('homehref') ?? 'https://alanhw.weeklyd3.repl.co/schoology.html');
+document.querySelector('[href="/grades/grades"]').textContent = localStorage.getItem('grades') ?? 'FALIURE GRADES';
+document.querySelector('nav ul li:nth-child(2) div button span').textContent = localStorage.getItem('boringclasses') ?? 'BORING CLASSES';
+document.querySelector('nav ul li:nth-child(3) div button span').textContent = localStorage.getItem('pooptalks') ?? 'POOP TALKS';
+    document.getElementById('grades').value = localStorage.getItem('grades') ?? 'FALIURE GRADES';
 
 })();
