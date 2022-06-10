@@ -139,7 +139,7 @@ document.getElementById('pooptalks').value = localStorage.getItem('pooptalks') ?
 document.getElementById('homehref').value = localStorage.getItem('homehref') ?? '/home';
 var poologyMinusButton = document.createElement('button');
 poologyMinusButton.addEventListener('click', function() { document.getElementById('poologysettings').style.display = 'block'; });
-poologyMinusButton.textContent = 'SCHOOLOGY MINUS SETTINS';
+poologyMinusButton.textContent = 'SCHOOLOGY MINUS SETTINGS';
 document.body.appendChild(poologyMinusButton);
 
 document.querySelector('a[href="/home"]').style.backgroundImage = `url(${img})`;
