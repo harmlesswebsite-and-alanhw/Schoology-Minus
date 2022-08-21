@@ -23,13 +23,13 @@ function save_settings(img, resources, grades, homehref, courses, groups) {
 }
 function letterGrade(grade) {
     if (grade > 100) return "HEY! U Cheated!";
-    if (90 <= grade && grade <= 100) return 'A - AVERAGE and AWFUL!';
-    if (80 <= grade && grade < 90) return 'B - U GET B? STOOBID';
-    if (70 <= grade && grade < 80) return 'C - REDO IT';
-    if (60 <= grade && grade < 70) return 'D - U SUK';
+    if (90 <= grade && grade <= 100) return 'A - Noice. U are now average to all Asians';
+    if (80 <= grade && grade < 90) return 'B - Keep Practicing, B is good but not Best';
+    if (70 <= grade && grade < 80) return 'C - OOOOF A MERE FAIL';
+    if (60 <= grade && grade < 70) return 'D - AW COME ON! A D. U CAN DO BETTER THAN THAT';
     if (0 < grade && grade < 60) return 'F - YOU ARE A FALIURE';
     if (grade === 0) return 'U GET 0 HEHEHEHEHE';
-    return 'The techer gave u negative score. Get Nubed'
+    return 'The techer gave u negative score. Even A traffic light will do better'
 }
 function getGradeColor(letterGrade) {
     switch (letterGrade.charAt(0)) {
